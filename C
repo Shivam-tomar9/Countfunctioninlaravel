@@ -1,0 +1,12 @@
+ $services = Service::all();
+
+        
+        $servicesWithProductCount = $services->map(function ($service) {
+            $service->product_count = $service->product()->count();
+            return $service;
+        });
+///Inside Service Model
+public function product()
+    {
+        return $this->hasMany(Product::class, 'services_id', 'id');
+    }
